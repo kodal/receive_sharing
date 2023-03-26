@@ -29,6 +29,9 @@ public class ReceiveSharingPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         eventSink = events
+        if (last != nil) {
+            events(last)
+        }
         print("onListen")
         return nil
     }
