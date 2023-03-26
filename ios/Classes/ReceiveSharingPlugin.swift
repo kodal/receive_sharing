@@ -24,7 +24,7 @@ public class ReceiveSharingPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        result("iOS " + UIDevice.current.systemVersion)
+        result(FlutterMethodNotImplemented)
     }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {

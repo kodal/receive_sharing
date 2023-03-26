@@ -3,7 +3,6 @@
 // package as the core of your plugin.
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:developer';
-import 'dart:html' as html show window;
 import 'dart:async';
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -31,13 +30,6 @@ class ReceiveSharingWeb extends ReceiveSharingPlatform {
 
   static void registerWith(Registrar registrar) {
     ReceiveSharingPlatform.instance = ReceiveSharingWeb();
-  }
-
-  /// Returns a [String] containing the version of the platform.
-  @override
-  Future<String?> getPlatformVersion() async {
-    final version = html.window.navigator.userAgent;
-    return version;
   }
 
   @override
