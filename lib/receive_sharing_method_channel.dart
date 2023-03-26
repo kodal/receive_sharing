@@ -14,13 +14,6 @@ class MethodChannelReceiveSharing extends ReceiveSharingPlatform {
   final eventChannel = const EventChannel("receive_sharing/events");
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version =
-        await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
-  }
-
-  @override
   Stream<Map<String, String?>> receive() {
     return eventChannel
         .receiveBroadcastStream()

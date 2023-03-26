@@ -23,10 +23,6 @@ abstract class ReceiveSharingPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
-
   Stream<Map<String, String?>> receive() {
     throw UnimplementedError('receive() has not been implemented.');
   }
