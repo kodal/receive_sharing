@@ -7,19 +7,19 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockReceiveSharingPlatform
     with MockPlatformInterfaceMixin
     implements ReceiveSharingPlatform {
-
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
 
   @override
-  Stream<Map<String, String>> receive() {
-    // TODO: implement receive
-    throw UnimplementedError();
-  }
+  Stream<Map<String, String>> receive() => Stream.fromIterable([
+        {"text": "test"},
+        {"text": "text", "subject": "subject"},
+      ]);
 }
 
 void main() {
-  final ReceiveSharingPlatform initialPlatform = ReceiveSharingPlatform.instance;
+  final ReceiveSharingPlatform initialPlatform =
+      ReceiveSharingPlatform.instance;
 
   test('$MethodChannelReceiveSharing is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelReceiveSharing>());
@@ -31,5 +31,16 @@ void main() {
     ReceiveSharingPlatform.instance = fakePlatform;
 
     expect(await receiveSharingPlugin.getPlatformVersion(), '42');
+  });
+
+  test('receive', () async {
+    final fakePlatform = MockReceiveSharingPlatform();
+    ReceiveSharingPlatform.instance = fakePlatform;
+    expect(
+        ReceiveSharing.receive(),
+        emitsInOrder([
+          {"text": "test"},
+          {"text": "text", "subject": "subject"},
+        ]));
   });
 }
